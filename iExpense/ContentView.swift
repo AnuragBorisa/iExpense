@@ -64,12 +64,24 @@ struct ContentView: View {
                    }
                }
     }
-    @State private var showingAddExpense = false
+//    @State private var showingAddExpense = false
     
     
     var body: some View {
         NavigationStack{
-        
+            NavigationLink {
+                AddView(expenses: expenses)
+            } label: {
+                HStack {
+                    Image(systemName: "plus")
+                    Text("Add Expense")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+            }
+           
             List{
                 Section(header: Text("Personal Expenses")
                     .font(.headline)
@@ -136,16 +148,16 @@ struct ContentView: View {
                 
             }
             .navigationTitle("iExpense")
-            .toolbar {
-                Button("Add Expense",systemImage: "plus"){
-                    showingAddExpense = true
-                }
-            }
+//            .toolbar {
+//                Button("Add Expense",systemImage: "plus"){
+//                    showingAddExpense = true
+//                }
+//            }
             
         }
-        .sheet(isPresented: $showingAddExpense){
-            AddView(expenses:expenses)
-        }
+//        .sheet(isPresented: $showingAddExpense){
+//            AddView(expenses:expenses)
+//        }
     }
 }
 

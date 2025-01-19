@@ -29,15 +29,26 @@ struct AddView: View {
                 TextField("Amount" ,value: $amount,format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     .keyboardType(.decimalPad)
             }
+            
             .navigationTitle("Add New expense")
             .toolbar {
-                Button("Save"){
-                    let item = ExpenseItem(name:name,type:type,amount:amount)
-                    expenses.items.append(item)
-                    dismiss()
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button("Cancel"){
+                        dismiss()
+                    }
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button("Save"){
+                        let item = ExpenseItem(name:name,type:type,amount:amount)
+                        expenses.items.append(item)
+                        dismiss()
+                    }
+                }
+               
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
